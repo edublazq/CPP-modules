@@ -1,7 +1,6 @@
-#ifndef CONTACT_HPP
-# define CONTACT_HPP
-
-# include <string>
+#pragma once
+#include <string>
+#include <iostream>
 
 class	Contact
 {
@@ -16,5 +15,3 @@ class	Contact
 		Contact(std::string s1, std::string s2, std::string s3, std::string s4, int num);
 		~Contact();
 };
-
-#endif

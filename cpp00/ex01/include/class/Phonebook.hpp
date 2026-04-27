@@ -1,17 +1,16 @@
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-
-# include "Contact.hpp"
+#pragma once
+#include "Contact.hpp"
 
 class PhoneBook
 {
 	private:
 		Contact	_contacts[8];
+		int		_n_contacts;
 	public:
-		PhoneBook();
+		PhoneBook(void);
 		Contact getContact(int num);
 		void	setContact(Contact newContact);
-		~PhoneBook();
-};
 
-#endif
+		void	add(void);
+		~PhoneBook(void);
+};
