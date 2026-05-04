@@ -3,7 +3,7 @@ NAME = phonebook
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude
 
-SRC = src/class/Contact.cpp
+SRC = src/class/Contact.cpp src/class/Phonebook.cpp src/main.cpp 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -20,6 +20,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) all
 
 .PHONY: all clean fclean re
