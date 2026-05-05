@@ -1,6 +1,6 @@
 #include "Phonebook.hpp"
 
-static std::string	strNotEmpty(const std::string cout_msg)
+std::string	strNotEmpty(const std::string cout_msg)
 {
 	std::string	input;
 
@@ -13,7 +13,7 @@ static std::string	strNotEmpty(const std::string cout_msg)
 	return (input);
 }
 
-static	std::string	num_input(void)
+static std::string	num_input(void)
 {
 	std::string	input;
 	int			num;
@@ -66,4 +66,42 @@ void	PhoneBook::add(void)
 	contact.set_darkSecret(strNotEmpty("Darkest secret: "));
 	contact.set_num(num_input());
 	this->setContact(contact);
+}
+
+void	PhoneBook::search(void)
+{
+    std::cout << std::setw(10) << "Index" << "|"
+              << std::setw(10) << "First Name" << "|"
+              << std::setw(10) << "Last Name" << "|"
+              << std::setw(10) << "Nickname" << std::endl;
+
+    for (int i = 0; i < _n_contacts; i++)
+    {
+        std::cout << std::setw(10) << i << "|"
+                  << std::setw(10) << formatColumn(_contacts[i].get_firstName()) << "|"
+                  << std::setw(10) << formatColumn(_contacts[i].get_lastName()) << "|"
+                  << std::setw(10) << formatColumn(_contacts[i].get_nickName())
+                  << std::endl;
+    }
+
+    // Pedir índice
+    std::string input;
+    int index;
+
+    std::cout << "Enter index: ";
+    std::getline(std::cin, input);
+
+    std::stringstream ss(input);
+    if (!(ss >> index && ss.eof()) || index < 0 || index >= _n_contacts)
+    {
+        std::cout << "Invalid index\n";
+        return;
+    }
+
+    // Mostrar contacto completo
+    std::cout << "First Name: " << _contacts[index].get_firstName() << std::endl;
+    std::cout << "Last Name: " << _contacts[index].get_lastName() << std::endl;
+    std::cout << "Nickname: " << _contacts[index].get_nickName() << std::endl;
+    std::cout << "Phone: " << _contacts[index].get_num() << std::endl;
+    std::cout << "Darkest Secret: " << _contacts[index].get_darkSecret() << std::endl;
 }
