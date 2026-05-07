@@ -9,7 +9,7 @@ std::string	strNotEmpty(const std::string cout_msg)
 		std::getline(std::cin, input);
 		if (input.empty())
 			std::cerr << RED << "Introduce a valid value!" << RESET << std::endl;
-	} while (input.empty());
+	} while (input.empty() && !std::cin.eof());
 	return (input);
 }
 
@@ -30,19 +30,17 @@ static std::string	num_input(void)
 			valid = false;
 		if (valid == false)
 			std::cerr << RED << "Please introduce a valid number!" << RESET << std::endl;
-	} while (valid == false);
+	} while (valid == false && !std::cin.eof());
 	return (input);
 }
 
 PhoneBook::PhoneBook()
 {
 	_n_contacts = 0;
-	std::cout << "Phonebook constructor called" << std::endl;
 }
 
 PhoneBook::~PhoneBook()
 {
-	std::cout << "PhoneBook destructor called" << std::endl;
 }
 
 Contact	PhoneBook::getContact(int num)

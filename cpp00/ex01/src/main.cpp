@@ -12,7 +12,7 @@ int main()
 	std::cout << "  SEARCH - Search contacts\n";
 	std::cout << "  EXIT   - Exit program\n";
 	std::cout << "------------------------------------\n";
-	while (true)
+	while (!std::cin.eof())
 	{
 		input = strNotEmpty("Introduce your option: ");
 		if (input == "ADD" || input == "add" || input == "Add")
