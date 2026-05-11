@@ -4,7 +4,7 @@ HumanB::HumanB()
 {
 	_name = "genericName2";
 	_weapon = NULL;
-	cout << "HumanB:" << _name << " created" << std::endl;
+	cout << "HumanB " << _name << " created" << std::endl;
 }
 
 HumanB::HumanB(const string &name)
@@ -24,5 +24,5 @@ void	HumanB::attack() const
 	if (_weapon == NULL)
 		cout << _name << "attacked with no weapon!" << std::endl;
 	else
-		cout << _name << " attacked with" << _weapon->getType() << std::endl;
+		cout << _name << " attacked with " << _weapon->getType() << std::endl;
 }
