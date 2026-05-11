@@ -22,7 +22,7 @@ HumanB::~HumanB()
 void	HumanB::attack() const
 {
 	if (_weapon == NULL)
-		cout << _name << "attacked with no weapon!" << std::endl;
+		cout << _name << " attacked with no weapon!" << std::endl;
 	else
 		cout << _name << " attacked with " << _weapon->getType() << std::endl;
 }
