@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cmath>
 
 using std::cout;
 using std::endl;
@@ -13,10 +14,17 @@ private:
 public:
 	Fixed();
 	Fixed& operator=(const Fixed &fixed);
-	Fixed(Fixed &toCopy);
+	Fixed(const Fixed &toCopy);
+	Fixed(const int fromInt);
+	Fixed(const float fromFloat);
 	~Fixed();
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
+	float	toFloat(void) const;
+	int		toInt(void) const;
 };
+
+
+std::ostream& operator<<(std::ostream& os, const Fixed &fixed);
 
