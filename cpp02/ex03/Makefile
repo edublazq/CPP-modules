@@ -1,9 +1,9 @@
-NAME = fixed
+NAME = bsp
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude
 
-SRC = Fixed.cpp main.cpp
+SRC = src/class/Fixed.cpp src/class/Point.cpp src/main.cpp src/bsp.cpp 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
