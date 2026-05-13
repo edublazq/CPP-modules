@@ -1,30 +1,43 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	a("Pepe");
-	ClapTrap	b("Juan");
+	cout << "===== CLAPTRAP TEST =====" << endl;
 
-	a.attack("Juan");
-	b.takeDamage(3);
+		ClapTrap	clap("Pepe");
 
-	b.beRepaired(2);
+		clap.attack("enemy");
+		clap.takeDamage(5);
+		clap.beRepaired(3);
 
-	b.attack("Pepe");
-	a.takeDamage(5);
+		cout << endl;
 
-	a.beRepaired(4);
+		cout << "===== SCAVTRAP TEST =====" << endl;
 
-	a.attack("Juan");
-	a.attack("Juan");
-	a.attack("Juan");
-	a.attack("Juan");
-	a.attack("Juan");
-	a.attack("Juan");
-	a.attack("Juan");
-	a.attack("Juan");
+		ScavTrap	scav("Guardian");
 
-	a.beRepaired(1);
+		scav.attack("intruder");
+		scav.takeDamage(30);
+		scav.beRepaired(10);
+		scav.guardGate();
 
-	return (0);
+		cout << endl;
+
+		cout << "===== COPY CONSTRUCTOR TEST =====" << endl;
+
+		ScavTrap	copy(scav);
+
+		copy.attack("copy_target");
+
+		cout << endl;
+
+		cout << "===== ASSIGNATION TEST =====" << endl;
+
+		ScavTrap	assign;
+
+		assign = scav;
+
+		assign.attack("assigned_target");
+
+		cout << endl;
 }

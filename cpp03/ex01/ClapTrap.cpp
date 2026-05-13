@@ -6,12 +6,12 @@ ClapTrap::ClapTrap()
 	_energyPoints(10),
 	_attackDamage(0)
 {
-	cout << "Standard constructor called" << endl;
+	cout << "ClapTrap constructor called" << endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	cout << "Destructor called" << endl;
+	cout << "ClapTrap destructor called" << endl;
 }
 
 ClapTrap::ClapTrap(const string &name)
@@ -20,7 +20,7 @@ ClapTrap::ClapTrap(const string &name)
 	_energyPoints(10),
 	_attackDamage(0)
 {
-	cout << "Standard name constructor called" << endl;
+	cout << "ClapTrap constructor called" << endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &claptrap)
@@ -38,7 +38,7 @@ ClapTrap::ClapTrap(const ClapTrap &toCopy)
 	_hitPoints = toCopy._hitPoints;
 	_energyPoints = toCopy._energyPoints;
 	_attackDamage = toCopy._attackDamage;
-	cout << "Copy constructor called" << endl;
+	cout << "Copy ClapTrap constructor called" << endl;
 }
 
 void	ClapTrap::attack(const string &target) const
