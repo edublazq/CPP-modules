@@ -1,7 +1,7 @@
-NAME = HiThisIsBrain
+NAME = sed
 
 CXX = c++
-CXXFLAGS = -Wall -Werror -Wextra --std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)

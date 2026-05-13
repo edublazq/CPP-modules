@@ -14,6 +14,6 @@ class	Harl
 		void	warning(void);
 		void	error(void);
 	public:
-		void	(*f[4])(void);
+		void	(Harl::*f[4])(void);
 		void	complain(string level);
 };

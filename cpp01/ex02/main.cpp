@@ -17,4 +17,5 @@ int	main(void)
 	cout << str << endl;
 	cout << strRef << endl;
 	cout << *strAddr << endl;
+	return (0);
 }

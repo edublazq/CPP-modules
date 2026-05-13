@@ -19,12 +19,13 @@ int	main(int ac, char **av)
 	}
 
 	char		buf;
+	string		name = (string)(av[1]) + "_out";
 	string		search = av[2];
 	string		change = av[3];
 	string		comp;
 	streampos	save;
 	ifstream	file(av[1]);
-	ofstream	outfile((string)(av[1]) + "_out");
+	ofstream	outfile(name.c_str());
 
 	if (!file.is_open() || !outfile.is_open())
 	{
