@@ -10,6 +10,6 @@ class Dog : public Animal
 		Dog& operator=(const Dog &toCopy);
 		~Dog();
 
-		void	makeSound();
+		void	makeSound() const;
 };
 

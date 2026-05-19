@@ -14,8 +14,9 @@ class Animal
 		Animal();
 		Animal(const Animal &toCopy);
 		Animal& operator=(const Animal &toCopy);
-		~Animal();
+		virtual ~Animal();
 
-		virtual void	makeSound();
+		virtual void	makeSound() const;
+		string			getType() const;
 };
 

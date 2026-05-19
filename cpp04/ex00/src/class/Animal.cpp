@@ -22,7 +22,12 @@ Animal::Animal(const Animal &toCopy)
 	_type = toCopy._type;
 }
 
-void	Animal::makeSound()
+void	Animal::makeSound() const
 {
 	cout << "Animal having offspring sound" << endl;
+}
+
+string	Animal::getType() const
+{
+	return (_type);
 }
