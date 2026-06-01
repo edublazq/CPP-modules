@@ -20,12 +20,12 @@ class ClapTrap
 		ClapTrap(const ClapTrap &toCopy);
 		virtual ~ClapTrap();
 
-		string	getName() {return _name;}
-		int		getHitPoints() {return _hitPoints;}
-		int		getEnergyPoints() {return _energyPoints;}
-		int		getAttackDamage() {return _attackDamage;}
+		string	getName() const {return _name;}
+		int		getHitPoints() const {return _hitPoints;}
+		int		getEnergyPoints() const {return _energyPoints;}
+		int		getAttackDamage() const {return _attackDamage;}
 
-		virtual void	attack(const string &target) const;
+		virtual void	attack(const string &target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 };

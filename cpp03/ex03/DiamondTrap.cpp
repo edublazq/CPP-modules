@@ -19,19 +19,29 @@ DiamondTrap::DiamondTrap(const DiamondTrap &toCopy)
 	FragTrap(toCopy),
 	ScavTrap(toCopy)
 {
+	_name = toCopy._name;
 	cout << "DiamondTrap copy constructor called" << endl;
 }
 
 DiamondTrap::DiamondTrap(const string &name)
-:	ClapTrap(name + "_clap_name")
+:	ClapTrap(name + "_clap_name"),
+	FragTrap(name),
+	ScavTrap(name)
 {
+	_name = name;
+	_hitPoints = FragTrap::_hitPoints;
+	_energyPoints = ScavTrap::_energyPoints;
+	_attackDamage = FragTrap::_attackDamage;
 	cout << "DiamondTrap name constructor called" << endl;
 }
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap &toCopy)
 {
 	if (this != &toCopy)
+	{
 		ClapTrap::operator=(toCopy);
+		_name = toCopy._name;
+	}
 	return (*this);
 }
 

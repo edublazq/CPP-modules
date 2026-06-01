@@ -37,6 +37,12 @@ ScavTrap::~ScavTrap()
 
 void	ScavTrap::attack(const string &target)
 {
+	if (_hitPoints == 0 || _energyPoints == 0)
+	{
+		cout << "ScavTrap " << _name << " can't attack, no HP or energy left!" << endl;
+		return;
+	}
+	_energyPoints--;
 	cout << "Scavtrap " << _name << " attacks " << target << " causing " << _attackDamage << " points of damage!" << endl;
 }
 
