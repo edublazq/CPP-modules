@@ -1,7 +1,7 @@
 #include "Ice.hpp"
 
 Ice::Ice()
-	: AMateria("Ice")
+	: AMateria("ice")
 {
 	cout << "Ice constructor called" << endl;
 }
@@ -12,9 +12,8 @@ Ice::~Ice()
 }
 
 Ice::Ice(const Ice &other)
-{
-	_type = other._type;
-}
+	: AMateria(other._type)
+{}
 
 Ice& Ice::operator=(const Ice &other)
 {
@@ -30,5 +29,5 @@ AMateria	*Ice::clone() const
 
 void	Ice::use(ICharacter &target)
 {
-	cout << "* shoots an ice bolt at " << target.getName << " *" << endl;
+	cout << "* shoots an ice bolt at " << target.getName() << " *" << endl;
 }

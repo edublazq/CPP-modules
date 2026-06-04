@@ -5,6 +5,15 @@ Character::Character()
 	for (size_t i = 0; i < 4; i++)
 		_inventory[i] = NULL;
 	materia_learned = 0;
+	_name = "std_name";
+}
+
+Character::Character(const string &name)
+{
+	for (size_t i = 0; i < 4; i++)
+		_inventory[i] = NULL;
+	materia_learned = 0;
+	_name = name;
 }
 
 Character::Character(const Character &toCopy) : ICharacter(toCopy) {}
@@ -26,20 +35,31 @@ string const	&Character::getName() const
 void	Character::equip(AMateria *m)
 {
 	if (!m || materia_learned > 3)
-		throw std::out_of_range("No space left on inventory");
+	{
+		std::cerr << "No space left on inventory" << endl;
+		return ;
+	}
 	_inventory[materia_learned] = m;
 	materia_learned++;
 }
 
 void	Character::unequip(int idx)
 {
-	if (materia_learned < idx)
-		throw std::out_of_range("Idx out of range");
+	if (materia_learned < (size_t)idx)
+	{
+		std::cerr << "No space left on inventory" << endl;
+		return ;
+	}
 	_inventory[idx] = NULL;
 	materia_learned--;
 }
 
 void	Character::use(int idx, ICharacter &target)
 {
+	if (idx > 3 || idx < 0 || !_inventory[idx])
+	{
+		std::cerr << "invalid index" << endl;
+		return ;
+	}
 	cout << this->getName() << " attacked " << target.getName() << " with " << _inventory[idx]->getType() << endl;
 }

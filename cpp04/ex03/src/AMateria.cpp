@@ -4,7 +4,7 @@ AMateria::AMateria(string const &type)
 	: _type(type)
 {}
 
-string	const &AMateria::getType() { return (_type) };
+string	const &AMateria::getType() { return (_type); }
 
 void	AMateria::use(ICharacter &target)
 {

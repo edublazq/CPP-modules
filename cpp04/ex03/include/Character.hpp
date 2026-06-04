@@ -11,6 +11,7 @@ class Character : public ICharacter
 		size_t		materia_learned;
 	public:
 		Character();
+		Character(const string &name);
 		Character(const Character &toCopy);
 		Character& operator=(const Character &toCopy);
 		~Character();
