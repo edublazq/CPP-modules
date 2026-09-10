@@ -15,11 +15,14 @@ private:
 public:
 	Bureaucrat();
 	Bureaucrat(const Bureaucrat &toCopy);
+	Bureaucrat(string name, int n);
 	Bureaucrat& operator=(const Bureaucrat &toCopy);
 	~Bureaucrat();
 
+	void			addGrade(unsigned int n);
+	void			subtractGrade(unsigned int n);
 	const string	getName() const;
-	const int	getGrade() const;
+	int				getGrade() const;
 
 	class GradeTooHighException : public std::exception
 	{
