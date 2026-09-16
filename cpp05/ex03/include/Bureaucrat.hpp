@@ -1,6 +1,5 @@
 #pragma once
 
-# include "AForm.hpp"
 # include <stdexcept>
 # include <exception>
 # include <iostream>
@@ -19,12 +18,12 @@ public:
 	Bureaucrat();
 	Bureaucrat(const Bureaucrat &toCopy);
 	Bureaucrat(string name, int n);
-	Bureaucrat& operator=(const Bureaucrat &toCozpy);
+	Bureaucrat& operator=(const Bureaucrat &toCopy);
 	~Bureaucrat();
 
 	void			addGrade(unsigned int n);
 	void			subtractGrade(unsigned int n);
-	void			executeForm(const AForm &form) const;
+	void			executeForm(const AForm& form) const;
 	const string	getName() const;
 	int				getGrade() const;
 
