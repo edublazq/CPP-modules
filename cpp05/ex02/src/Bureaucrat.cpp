@@ -38,7 +38,7 @@ void	Bureaucrat::addGrade(unsigned int n)
 
 void	Bureaucrat::subtractGrade(unsigned int n)
 {
-	grade += (int)n;
+	grade -= (int)n;
 	if (grade < 1)
 		throw GradeTooLowException();
 }

@@ -1,30 +1,30 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : 
-AForm(), name("ASCII form"), isSigned(false)
+ShrubberyCreationForm::ShrubberyCreationForm() :
+AForm("ASCII form", 145, 137)
 {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& form):
-name(form.name)
+AForm(form)
 {}
 
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& form)
 {
-	(void) form;
+	AForm::operator=(form);
 	return (*this);
 }
 
 void	ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat)
 {
-	string		outname(name + "shrubbery");
+	string		outname(getName() + "shrubbery");
 	ofstream	output(outname.c_str());
 
-	if (!isSigned)
+	if (!getIsSigned())
 		throw AForm::notSignedException();
-	if (gradeToExecute > bureaucrat.getGrade())
+	if (static_cast<unsigned int>(bureaucrat.getGrade()) > getGradeToExecute())
 		throw AForm::GradeTooLowException();
 	if (!output.is_open())
 		throw std::runtime_error("Outfile could not be created");

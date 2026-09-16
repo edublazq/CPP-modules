@@ -14,7 +14,7 @@ private:
 	const unsigned int		gradeToSign;
 	bool					isSigned;
 public:
-	AForm();
+	AForm(const string& name, unsigned int gradeToSign, unsigned int gradeToExecute);
 	AForm(const AForm& form);
 	AForm& operator=(const AForm& form);
 	virtual ~AForm() = 0;
@@ -51,7 +51,7 @@ public:
 			{
 				return ("Form is not signed");
 			}
-	}
+	};
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& form);

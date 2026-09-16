@@ -1,8 +1,13 @@
 #include "AForm.hpp"
 
-AForm::AForm()
-: name("Default form")
-{}
+AForm::AForm(const string& name, unsigned int gradeToSign, unsigned int gradeToExecute)
+: name(name), gradeToExecute(gradeToExecute), gradeToSign(gradeToSign), isSigned(false)
+{
+	if (gradeToSign > 150 || gradeToExecute > 150)
+		throw GradeTooHighException();
+	if (gradeToSign < 1 || gradeToExecute < 1)
+		throw GradeTooLowException();
+}
 
 AForm::~AForm()
 {}
@@ -13,7 +18,7 @@ AForm::AForm(const AForm &toCopy)
 
 AForm& AForm::operator=(const AForm& form)
 {
-	(void)form;
+	isSigned = form.isSigned;
 	return (*this);
 }
 
@@ -24,14 +29,13 @@ bool			AForm::getIsSigned() const {return (isSigned);}
 
 void	AForm::signForm(Bureaucrat &bureaucrat)
 {
-	if (bureaucrat.getGrade() > gradeToSign)
+	if (static_cast<unsigned int>(bureaucrat.getGrade()) > gradeToSign)
 	{
-		cout << bureaucrat.getName() << " signed " << name << endl;
-		isSigned = true;
-		return ;
+		cout << bureaucrat.getName() << " couldn't sign " << name << "because ";
+		throw GradeTooLowException();
 	}
-	cout << bureaucrat.getName() << " couldn't sign " << name << "because ";
-	throw GradeTooLowException();
+	cout << bureaucrat.getName() << " signed " << name << endl;
+	isSigned = true;
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& Form)

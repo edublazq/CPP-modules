@@ -3,15 +3,17 @@ NAME = Mommy
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude
 
-SRC = Bureaucrat.cpp main.cpp Form.cpp
-OBJ = $(SRC:.cpp=.o)
+SRC_DIR = src
+SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp main.cpp PresidentialPardonForm.cpp
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
+OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
