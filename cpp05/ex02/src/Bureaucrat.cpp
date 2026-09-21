@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat()
 : name("Manolo"), grade(50)
@@ -41,6 +42,11 @@ void	Bureaucrat::subtractGrade(unsigned int n)
 	grade -= (int)n;
 	if (grade < 1)
 		throw GradeTooLowException();
+}
+
+void	Bureaucrat::executeForm(const AForm& form) const
+{
+	form.execute(*this);
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureau)

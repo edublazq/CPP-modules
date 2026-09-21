@@ -29,7 +29,7 @@ public:
 	bool			getIsSigned() const;
 
 	void			signForm(Bureaucrat &bureaucrat);
-	virtual void	execute(const Bureaucrat &bureaucrat) = 0;
+	virtual void	execute(const Bureaucrat &bureaucrat) const = 0;
 
 
 	class GradeTooHighException : public std::exception

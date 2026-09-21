@@ -1,10 +1,14 @@
 #pragma once
 
-# include "Bureaucrat.hpp"
+# include <exception>
+# include <iostream>
+# include <string>
 
 using std::string;
 using std::cout;
 using std::endl;
+
+class Bureaucrat;
 
 class AForm
 {
@@ -25,7 +29,7 @@ public:
 	bool			getIsSigned() const;
 
 	void			signForm(Bureaucrat &bureaucrat);
-	virtual void	execute(const Bureaucrat &bureaucrat) = 0;
+	virtual void	execute(const Bureaucrat &bureaucrat) const = 0;
 
 
 	class GradeTooHighException : public std::exception

@@ -1,4 +1,5 @@
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 AForm::AForm(const string& name, unsigned int gradeToSign, unsigned int gradeToExecute)
 : name(name), gradeToExecute(gradeToExecute), gradeToSign(gradeToSign), isSigned(false)

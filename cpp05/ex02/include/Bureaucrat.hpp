@@ -1,6 +1,5 @@
 #pragma once
 
-# include "AForm.hpp"
 # include <stdexcept>
 # include <exception>
 # include <iostream>

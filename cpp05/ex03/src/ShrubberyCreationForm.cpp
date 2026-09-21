@@ -17,7 +17,7 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-void	ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat)
+void	ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat) const
 {
 	string		outname(getName() + "shrubbery");
 	ofstream	output(outname.c_str());

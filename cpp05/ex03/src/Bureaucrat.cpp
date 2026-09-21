@@ -46,7 +46,7 @@ void	Bureaucrat::subtractGrade(unsigned int n)
 
 void	Bureaucrat::executeForm(const AForm& form) const
 {
-
+	const_cast<AForm&>(form).execute(*this);
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureau)

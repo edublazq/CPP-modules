@@ -17,7 +17,7 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPard
 	return (*this);
 }
 
-void	PresidentialPardonForm::execute(const Bureaucrat &bureaucrat)
+void	PresidentialPardonForm::execute(const Bureaucrat &bureaucrat) const
 {
 	if (static_cast<unsigned int>(bureaucrat.getGrade()) > getGradeToExecute())
 		throw AForm::GradeTooLowException();
