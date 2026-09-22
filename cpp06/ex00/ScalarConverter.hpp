@@ -10,7 +10,7 @@ using std::string;
 using std::cout;
 using std::endl;
 
-typedef enum	e_type
+enum	e_type
 {
 	CHAR,
 	INT,

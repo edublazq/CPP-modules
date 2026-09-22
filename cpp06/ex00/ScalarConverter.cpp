@@ -6,7 +6,7 @@ e_type	getType(string &toConvert)
 	double	strNum = strtod(toConvert.c_str(), &end);
 	if (end == toConvert.c_str())
 		return (INVALID);
-	if (end != '\0')
+	if (*end != '\0')
 	{
 		if (*end == 'f' && *(end + 1) == '\0')
 			return (FLOAT);
@@ -85,6 +85,17 @@ void	pseudo(string &toConvert)
 	}
 }
 
+void	printConversion(t_conversion &conversion)
+{
+	if (conversion.c < 20)
+		cout << "char: Non displayable" << endl;
+	else
+		cout << "char: " << conversion.c << endl;
+	cout << "int: " << conversion.i << endl;
+	cout << "float: " << conversion.f << "f" << endl;
+	cout << "double: " << conversion.d << endl;
+}
+
 void	ScalarConverter::convert(string &toConvert)
 {
 	t_conversion	conversion;
@@ -103,7 +114,9 @@ void	ScalarConverter::convert(string &toConvert)
 	else if (type == DOUBLE)
 		doubleConversion(toConvert, conversion);
 	else if (type == PSEUDO)
+	{
 		pseudo(toConvert);
-	else
 		return ;
+	}
+	printConversion(conversion);
 }
