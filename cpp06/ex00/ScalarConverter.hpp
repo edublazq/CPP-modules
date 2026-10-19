@@ -1,10 +1,13 @@
 #pragma once
 
 # include <string>
+# include <sstream>
+# include <iomanip>
 # include <iostream>
 # include <limits.h>
 # include <cstdlib>
 # include <cstring>
+# include <cfloat>
 
 using std::string;
 using std::cout;
@@ -20,16 +23,9 @@ enum	e_type
 	INVALID
 };
 
-typedef struct s_conversion
-{
-	char	c;
-	int		i;
-	double	d;
-	float	f;
-}	t_conversion;
-
 class ScalarConverter
 {
 public:
 	static void	convert(string &toConvert);
+	virtual ~ScalarConverter() = 0;
 };

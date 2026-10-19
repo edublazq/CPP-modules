@@ -1,7 +1,22 @@
 #include "ScalarConverter.hpp"
+#include <cctype>
+#include <cmath>
+#include <limits>
 
-e_type	getType(string &toConvert)
+static bool	isPseudo(const string &s)
 {
+	return (s == "nan" || s == "+inf" || s == "-inf"
+		|| s == "nanf" || s == "+inff" || s == "-inff");
+}
+
+static e_type	getType(const string &toConvert)
+{
+	if (toConvert.empty())
+		return (INVALID);
+	if (isPseudo(toConvert))
+		return (PSEUDO);
+	if (toConvert.length() == 1 && !std::isdigit(static_cast<unsigned char>(toConvert[0])))
+		return (CHAR);
 	char	*end;
 	double	strNum = strtod(toConvert.c_str(), &end);
 	if (end == toConvert.c_str())
@@ -10,113 +25,110 @@ e_type	getType(string &toConvert)
 	{
 		if (*end == 'f' && *(end + 1) == '\0')
 			return (FLOAT);
-		else
-		{
-			if (!std::strcmp(end, "+inf") || !std::strcmp(end, "-inf") || !std::strcmp(end, "nan"))
-				return (PSEUDO);
-			if (strNum == 0 && *(end + 1) == '\0')
-				return (CHAR);
-		}
 		return (INVALID);
 	}
-	if ((static_cast<int>(strNum) / strNum) != 1)
-		return (DOUBLE);
-	return (INT);
+	if (strNum >= INT_MIN && strNum <= INT_MAX
+		&& strNum == static_cast<double>(static_cast<int>(strNum)))
+		return (INT);
+	return (DOUBLE);
 }
 
-int	charConversion(string &toConvert, t_conversion &conversion)
+static bool	isFinite(double d)
 {
-	conversion.c = toConvert[0];
-	conversion.i = static_cast<int>(conversion.c);
-	conversion.d = static_cast<double>(conversion.c);
-	conversion.f = static_cast<float>(conversion.c);
-	return (EXIT_SUCCESS);
+	return (d == d && d <= DBL_MAX && d >= -DBL_MAX);
 }
 
-int	doubleConversion(string &toConvert, t_conversion &conversion)
+static void	printChar(double d)
 {
-	conversion.d = strtod(toConvert.c_str(), NULL);
-	conversion.f = static_cast<float>(conversion.d);
-	conversion.c = static_cast<char>(conversion.d);
-	conversion.i = static_cast<int>(conversion.d);
-	return (EXIT_SUCCESS);
+	cout << "char: ";
+	if (!isFinite(d) || d < 0 || d > 127)
+		cout << "impossible";
+	else if (d < 32 || d >= 127)
+		cout << "Non displayable";
+	else
+		cout << "'" << static_cast<char>(d) << "'";
+	cout << endl;
 }
 
-int	floatConversion(string &toConvert, t_conversion &conversion)
+static void	printInt(double d)
 {
-	conversion.f = strtof(toConvert.c_str(), NULL);
-	conversion.d = static_cast<double>(conversion.f);
-	conversion.c = static_cast<char>(conversion.f);
-	conversion.i = static_cast<int>(conversion.f);
-	return (EXIT_SUCCESS);
+	cout << "int: ";
+	if (!isFinite(d) || d < INT_MIN || d > INT_MAX)
+		cout << "impossible";
+	else
+		cout << static_cast<int>(d);
+	cout << endl;
 }
 
-int	intConversion(string &toConvert, t_conversion &conversion)
+static void	printFloat(double d)
 {
-	conversion.i = atoi(toConvert.c_str());
-	conversion.d = static_cast<double>(conversion.i);
-	conversion.c = static_cast<char>(conversion.i);
-	conversion.f = static_cast<float>(conversion.i);
-	return (EXIT_SUCCESS);
-}
+	float	f = static_cast<float>(d);
 
-void	pseudo(string &toConvert)
-{
-	if (toConvert == "nan")
-	{
-		cout << "char: impossible" << endl;
-		cout << "int: impossible" << endl;
-		cout << "float: nanf" << endl;
-		cout << "double: nan" << endl;
-	}
-	else if(toConvert == "+inf")
-	{
-		cout << "char: impossible" << endl;
-		cout << "int: impossible" << endl;
-		cout << "float: +inf" << endl;
-		cout << "double: +inf" << endl;	
-	}
+	cout << "float: ";
+	if (isFinite(d) && (d < -FLT_MAX || d > FLT_MAX))
+		cout << "impossible";
+	else if (f != f)
+		cout << "nanf";
+	else if (f > FLT_MAX)
+		cout << "+inff";
+	else if (f < -FLT_MAX)
+		cout << "-inff";
 	else
 	{
-		cout << "char: impossible" << endl;
-		cout << "int: impossible" << endl;
-		cout << "float: -inf" << endl;
-		cout << "double: -inf" << endl;
+		if (std::floor(f) == f)
+			cout << std::fixed << std::setprecision(1);
+		else
+			cout << std::setprecision(FLT_DIG);
+		cout << f << "f";
+		cout.unsetf(std::ios::fixed);
 	}
+	cout << endl;
 }
 
-void	printConversion(t_conversion &conversion)
+static void	printDouble(double d)
 {
-	if (conversion.c < 20)
-		cout << "char: Non displayable" << endl;
+	cout << "double: ";
+	if (d != d)
+		cout << "nan";
+	else if (d > DBL_MAX)
+		cout << "+inf";
+	else if (d < -DBL_MAX)
+		cout << "-inf";
 	else
-		cout << "char: " << conversion.c << endl;
-	cout << "int: " << conversion.i << endl;
-	cout << "float: " << conversion.f << "f" << endl;
-	cout << "double: " << conversion.d << endl;
+	{
+		if (std::floor(d) == d)
+			cout << std::fixed << std::setprecision(1);
+		else
+			cout << std::setprecision(DBL_DIG);
+		cout << d;
+		cout.unsetf(std::ios::fixed);
+	}
+	cout << endl;
+}
+
+static void	printConversion(double d)
+{
+	printChar(d);
+	printInt(d);
+	printFloat(d);
+	printDouble(d);
 }
 
 void	ScalarConverter::convert(string &toConvert)
 {
-	t_conversion	conversion;
 	e_type	type = getType(toConvert);
+	double	d;
+
 	if (type == INVALID)
 	{
 		cout << "Invalid conversion" << endl;
 		return ;
 	}
 	if (type == CHAR)
-		charConversion(toConvert, conversion);
-	else if (type == INT)
-		intConversion(toConvert, conversion);
+		d = static_cast<double>(static_cast<unsigned char>(toConvert[0]));
 	else if (type == FLOAT)
-		floatConversion(toConvert, conversion);
-	else if (type == DOUBLE)
-		doubleConversion(toConvert, conversion);
-	else if (type == PSEUDO)
-	{
-		pseudo(toConvert);
-		return ;
-	}
-	printConversion(conversion);
+		d = static_cast<double>(strtof(toConvert.c_str(), NULL));
+	else
+		d = strtod(toConvert.c_str(), NULL);
+	printConversion(d);
 }
