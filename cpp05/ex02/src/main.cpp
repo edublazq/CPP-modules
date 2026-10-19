@@ -81,49 +81,15 @@ static void	testFormLifecycle(const std::string& formLabel,
 {
 	std::cout << "\n=== " << formLabel << " ===" << std::endl;
 
-	FormType unsignedForm;
-	std::cout << unsignedForm << std::endl;
+	FormType form("target");
+	std::cout << form << std::endl;
 
-	try
-	{
-		unsignedForm.execute(strongExecutor);
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << "execute before signing -> " << e.what() << std::endl;
-	}
-
-	try
-	{
-		unsignedForm.signForm(weakSigner);
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << weakSigner.getName() << " failed to sign -> " << e.what() << std::endl;
-	}
-
-	FormType signableForm;
-	signableForm.signForm(strongSigner);
-	std::cout << signableForm << std::endl;
-
-	try
-	{
-		signableForm.execute(weakExecutor);
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << weakExecutor.getName() << " failed to execute -> " << e.what() << std::endl;
-	}
-
-	try
-	{
-		signableForm.execute(strongExecutor);
-		std::cout << strongExecutor.getName() << " executed " << formLabel << " successfully" << std::endl;
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << "unexpected execute failure -> " << e.what() << std::endl;
-	}
+	strongExecutor.executeForm(form);
+	weakSigner.signForm(form);
+	strongSigner.signForm(form);
+	std::cout << form << std::endl;
+	weakExecutor.executeForm(form);
+	strongExecutor.executeForm(form);
 }
 
 int	main(void)

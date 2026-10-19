@@ -23,6 +23,7 @@ public:
 
 	void			addGrade(unsigned int n);
 	void			subtractGrade(unsigned int n);
+	void			signForm(AForm &form);
 	void			executeForm(const AForm &form) const;
 	const string	getName() const;
 	int				getGrade() const;
@@ -30,18 +31,12 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("Grade is too high");
-			}
+			virtual const char* what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("Grade is too low");
-			}
+			virtual const char* what() const throw();
 	};
 
 };

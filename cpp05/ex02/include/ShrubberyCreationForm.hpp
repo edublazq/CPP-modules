@@ -10,6 +10,7 @@ class ShrubberyCreationForm : public AForm
 {
 	public:
 		ShrubberyCreationForm();
+		ShrubberyCreationForm(const string& name);
 		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
 		~ShrubberyCreationForm();

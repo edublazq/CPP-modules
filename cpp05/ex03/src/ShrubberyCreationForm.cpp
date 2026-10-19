@@ -4,6 +4,10 @@ ShrubberyCreationForm::ShrubberyCreationForm() :
 AForm("ASCII form", 145, 137)
 {}
 
+ShrubberyCreationForm::ShrubberyCreationForm(const string& name) :
+AForm(name, 145, 137)
+{}
+
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {}
 
@@ -19,13 +23,13 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void	ShrubberyCreationForm::execute(const Bureaucrat &bureaucrat) const
 {
-	string		outname(getName() + "shrubbery");
-	ofstream	output(outname.c_str());
-
 	if (!getIsSigned())
 		throw AForm::notSignedException();
 	if (static_cast<unsigned int>(bureaucrat.getGrade()) > getGradeToExecute())
 		throw AForm::GradeTooLowException();
+	string		outname(getName() + "_shrubbery");
+	ofstream	output(outname.c_str());
+
 	if (!output.is_open())
 		throw std::runtime_error("Outfile could not be created");
 	output << "       _-_ "<< endl;

@@ -7,6 +7,8 @@
 
 using std::string;
 
+class Form;
+
 class Bureaucrat
 {
 private:
@@ -23,22 +25,17 @@ public:
 	void			subtractGrade(unsigned int n);
 	const string	getName() const;
 	int				getGrade() const;
+	void			signForm(Form &form);
 
 	class GradeTooHighException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("Grade is too high");
-			}
+			virtual const char* what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 		public:
-			virtual const char* what() const throw()
-			{
-				return ("Grade is too low");
-			}
+			virtual const char* what() const throw();
 	};
 
 };

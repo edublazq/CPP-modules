@@ -6,6 +6,10 @@ RobotomyRequestForm::RobotomyRequestForm() :
 AForm("ASCII form", 72, 45)
 {}
 
+RobotomyRequestForm::RobotomyRequestForm(const string& name) :
+AForm(name, 72, 45)
+{}
+
 RobotomyRequestForm::~RobotomyRequestForm()
 {}
 

@@ -7,6 +7,7 @@ class PresidentialPardonForm : public AForm
 {
 	public:
 		PresidentialPardonForm();
+		PresidentialPardonForm(const string& name);
 		PresidentialPardonForm(const PresidentialPardonForm& copy);
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& copy);
 		~PresidentialPardonForm();

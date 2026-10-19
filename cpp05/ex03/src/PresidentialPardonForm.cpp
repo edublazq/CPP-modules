@@ -4,6 +4,10 @@ PresidentialPardonForm::PresidentialPardonForm() :
 AForm("Presidential Form", 25, 5)
 {}
 
+PresidentialPardonForm::PresidentialPardonForm(const string& name) :
+AForm(name, 25, 5)
+{}
+
 PresidentialPardonForm::~PresidentialPardonForm()
 {}
 
@@ -19,9 +23,9 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPard
 
 void	PresidentialPardonForm::execute(const Bureaucrat &bureaucrat) const
 {
-	if (static_cast<unsigned int>(bureaucrat.getGrade()) > getGradeToExecute())
-		throw AForm::GradeTooLowException();
 	if (!getIsSigned())
 		throw AForm::notSignedException();
+	if (static_cast<unsigned int>(bureaucrat.getGrade()) > getGradeToExecute())
+		throw AForm::GradeTooLowException();
 	cout << getName() << " has been pardoned by Zaphod Beeblebrox." << endl;
 }

@@ -4,7 +4,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude
 
 SRC_DIR = src
-SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp main.cpp PresidentialPardonForm.cpp
+SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp main.cpp PresidentialPardonForm.cpp Intern.cpp
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ = $(SRCS:.cpp=.o)
 
