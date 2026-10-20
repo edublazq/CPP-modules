@@ -3,6 +3,18 @@
 #include <cmath>
 #include <limits>
 
+ScalarConverter::ScalarConverter(){}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &toCopy){(void) toCopy;}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter &toCopy)
+{
+	(void) toCopy;
+	return (*this);
+}
+
+ScalarConverter::~ScalarConverter(){}
+
 static bool	isPseudo(const string &s)
 {
 	return (s == "nan" || s == "+inf" || s == "-inf"

@@ -25,7 +25,11 @@ enum	e_type
 
 class ScalarConverter
 {
+private:
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter& toCopy);
+	ScalarConverter& operator=(const ScalarConverter& toCopy);
+	~ScalarConverter();
 public:
 	static void	convert(string &toConvert);
-	virtual ~ScalarConverter() = 0;
 };
